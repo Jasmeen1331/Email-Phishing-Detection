@@ -5,7 +5,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:3000"]}})
+CORS(app, resources={r"/*": {"origins": [
+        "http://localhost:3000",
+        "https://phislens-snowy.vercel.app",
+        "https://phislens-git-main-jasmeen1331s-projects.vercel.app",
+        "https://*.vercel.app"
+    ]}})
 
 MODEL_PATH = Path(__file__).resolve().parent / "models" / "fishlens_lr_tfidf.joblib"
 model = joblib.load(MODEL_PATH)
