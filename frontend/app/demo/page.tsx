@@ -56,13 +56,14 @@ export default function DemoPage() {
     return Math.max(0, Math.min(100, result.probability_phishing * 100));
   }, [result]);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
   async function analyze() {
     setLoading(true);
     setError(null);
     setResult(null);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/predict", {
+      const res = await fetch(`${API_URL}/predict, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ subject, body }),
